@@ -1,0 +1,41 @@
+--- origsrc/faad2-2.7/libfaad/Makefile.am	2009-02-04 18:51:03.000000000 -0600
++++ src/faad2-2.7/libfaad/Makefile.am	2009-03-02 16:00:35.546875000 -0600
+@@ -4,7 +4,7 @@
+ include_HEADERS = $(top_srcdir)/include/faad.h \
+ 		  $(top_srcdir)/include/neaacdec.h
+ 
+-libfaad_la_LDFLAGS = -version-info 2:0:0
++libfaad_la_LDFLAGS = -version-info 2:0:0 -no-undefined
+ libfaad_la_LIBADD = -lm
+ 
+ libfaad_la_SOURCES = bits.c cfft.c decoder.c drc.c \
+--- origsrc/faad2/plugins/mpeg4ip/Makefile.am	2003-08-07 12:21:21.000000000 -0500
++++ src/faad2/plugins/mpeg4ip/Makefile.am	2008-01-01 13:36:58.875000000 -0600
+@@ -1,7 +1,7 @@
+ libdir = @MPEG4IP_PLAYER_PLUGIN_DIR@
+ 
+ lib_LTLIBRARIES = faad2_plugin.la
+-faad2_plugin_la_LDFLAGS = -module
++faad2_plugin_la_LDFLAGS = -module -avoid-version -no-undefined
+ faad2_plugin_la_SOURCES = \
+ 	faad2.cpp \
+ 	faad2.h \
+@@ -10,7 +10,7 @@
+ 
+ faad2_plugin_la_LIBADD = \
+ 	$(top_builddir)/libfaad/libfaad.la \
+-	-lm
++	-lmp4util -lm
+ 
+ 
+ INCLUDES =  -I$(top_srcdir)/include
+--- origsrc/faad2/plugins/xmms/src/Makefile.am	2006-09-25 14:52:53.000000000 -0500
++++ src/faad2/plugins/xmms/src/Makefile.am	2008-01-01 13:36:58.906250000 -0600
+@@ -9,6 +9,6 @@
+ libmp4_la_LIBADD = $(top_builddir)/libfaad/libfaad.la \
+        $(top_builddir)/common/mp4ff/libmp4ff.la
+ 
+-libmp4_la_LDFLAGS = -module -avoid-version $(local_LDFLAGS) -lpthread
++libmp4_la_LDFLAGS = -module -avoid-version -no-undefined $(local_LDFLAGS) -lpthread
+ 
+ libmp4_la_SOURCES = libmp4.c mp4_utils.c aac_utils.c

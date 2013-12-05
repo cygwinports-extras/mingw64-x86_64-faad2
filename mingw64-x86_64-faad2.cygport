@@ -1,0 +1,18 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross
+
+NAME="mingw64-x86_64-faad2"
+VERSION=2.7
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="MPEG4/AAC decoder for Win64 toolchain"
+DESCRIPTION="FAAD2 is a HE, LC, MAIN and LTP profile, MPEG2 and MPEG-4 AAC
+decoder, and includes code for SBR (HE AAC) decoding. FAAD2 is licensed
+under the GPL."
+HOMEPAGE="http://www.audiocoding.com/"
+SRC_URI="mirror://sourceforge/faac/faad2-${VERSION}.tar.gz"
+SRC_DIR="faad2-${VERSION}"
+PATCH_URI="2.7-no-undefined.patch"
+
+CYGCONF_ARGS="--with-drm --without-xmms --without-mpeg4ip"
+MAKEOPTS+=" bin_PROGRAMS= man_MANS= "
